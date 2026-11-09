@@ -1,8 +1,11 @@
 services:
-  # servidor nginx que publica nuestra web
+  # servidor web nginx
   web:
     image: nginx:1.27-alpine
     ports:
       - "8080:80"
     volumes:
+      # contenido de la web
       - ./web:/usr/share/nginx/html:ro
+      # configuración personalizada
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
