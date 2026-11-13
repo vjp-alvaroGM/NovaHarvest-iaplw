@@ -1,19 +1,46 @@
 services:
-  # servidor web nginx
+  # servidor web que recibe las peticiones
   web:
     image: nginx:1.27-alpine
     ports:
       - "8080:80"
     volumes:
+      # contenido y configuración de nginx
       - ./web:/usr/share/nginx/html:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - php
 
-  # servicio que ejecuta php
+  # servicio que ejecuta el código php
   php:
     build: ./php
     volumes:
+      # archivos compartidos con nginx en la misma ruta
       - ./web:/usr/share/nginx/html:ro
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf:ro
       - ./php/php.ini:/usr/local/etc/php/conf.d/novaharvest.ini:ro
+    environment:
+      # datos de conexión del usuario de la aplicación
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+    depends_on:
+      - db
+
+  # servidor de bases de datos
+  db:
+    image: mariadb:11
+    environment:
+      # configuración usada al inicializar la base de datos
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASS}
+    volumes:
+      # almacenamiento persistente de mariadb
+      - dbdata:/var/lib/mysql
+
+# volumen administrado por docker
+volumes:
+  dbdata:
