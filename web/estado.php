@@ -1,3 +1,17 @@
+<?php
+// conectar con mariadb usando el usuario de la aplicación
+$dsn = sprintf(
+    'mysql:host=%s;dbname=%s;charset=utf8mb4',
+    getenv('DB_HOST'),
+    getenv('DB_NAME')
+);
+
+$pdo = new PDO($dsn, getenv('DB_USER'), getenv('DB_PASS'));
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// consultar la versión del servidor de bases de datos
+$version = $pdo->query('SELECT VERSION()')->fetchColumn();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,11 +33,11 @@
             <a href="/estado.php">Estado</a>
         </nav>
     </header>
-
-    <main>
+<main>
     <h1>Estado del servidor</h1>
     <p>Fecha y hora del servidor: <?= date('d/m/Y H:i:s') ?></p>
     <p>Contenedor PHP: <?= getenv('HOSTNAME') ?></p>
+    <p>Base de datos: MariaDB <?= $version ?></p>
     <p>Página generada por PHP-FPM</p>
 </main>
 
