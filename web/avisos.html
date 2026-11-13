@@ -1,10 +1,11 @@
+<?php
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaHarvest - Avísame</title>
-    <link rel="stylesheet" href="/css/estilos.css">
+<title>NovaHarvest - Aviso registrado</title>
+<link rel="stylesheet" href="/css/estilos.css">
 </head>
 <body>
     <header>
@@ -21,28 +22,10 @@
     </header>
 
     <main>
-        <h1>Avísame</h1>
-        <p>Indica qué producto te interesa para recibir un aviso.</p>
-
-        <form method="POST" action="/avisos.php">
-            <p>
-                <label for="nombre">Nombre</label><br>
-                <input type="text" id="nombre" name="nombre" required>
-            </p>
-
-            <p>
-                <label for="email">Correo electrónico</label><br>
-                <input type="email" id="email" name="email" required>
-            </p>
-
-            <p>
-                <label for="producto">Producto que te interesa</label><br>
-                <input type="text" id="producto" name="producto" required>
-            </p>
-
-            <button type="submit">Avísame</button>
-        </form>
-    </main>
+    <h1>Aviso registrado</h1>
+    <p>Gracias. Te avisaremos cuando haya excedentes del producto que buscas.</p>
+    <a href="/excedentes.php">Consultar excedentes disponibles</a>
+</main>
 
     <footer>
         <p>NovaHarvest · IES Valle del Jerte · Curso 2026-2027</p>
