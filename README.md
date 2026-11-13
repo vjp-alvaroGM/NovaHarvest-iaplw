@@ -183,6 +183,23 @@ volumen de MariaDB está vacío. Cambiar una contraseña en `.env`
 con un volumen existente requiere actualizar también la cuenta
 correspondiente en MariaDB.
 
+### Commits de las fases
+
+Estas versiones permiten revisar cada fase con sus correcciones,
+conservando los commits anteriores:
+
+| Fase | Commit | Contenido |
+|---|---|---|
+| 1 | `9dfbe97` | Web estática con nginx y página de error del servidor corregida |
+| 2 | `386781f` | PHP-FPM, FastCGI y estado del servidor, con la página de error corregida |
+| 3 | `a7b5f3d` | MariaDB, excedentes, formulario de avisos y versión de la base de datos |
+| 4 | Último commit `UT1 Fase 4:` de `main` | Healthcheck, Adminer, HTTPS y formulario de avisos recuperado |
+
+El primer commit del repositorio creó únicamente el README.
+`.gitignore` se añadió en `ff4a0ed`, antes de versionar la configuración
+de la aplicación. Los archivos `.env` y `nginx/certs/` no aparecen
+en el historial.
+
 ## 2. Arquitectura
 
 ```mermaid
