@@ -4,7 +4,7 @@ services:
     image: nginx:1.27-alpine
     ports:
       - "8080:80"
-      - "8443:443"
+      - "9443:443"
     volumes:
       # contenido, configuración y certificados
       - ./web:/usr/share/nginx/html:ro
